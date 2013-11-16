@@ -1,0 +1,8 @@
+{
+    // Reduce font size?
+    "reduce_font_size": true,
+
+    // How many points to reduce font size by
+    // E.g. if reduction is 1, font size 14 will become 13
+    "font_size_reduction": 1
+}
