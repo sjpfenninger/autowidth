@@ -49,6 +49,8 @@ class AutoWidth(object):
         elif layout_chars < viewport_chars - threshold - adjustment:
             for s in ['wrap_width', 'font_size', 'font_size_override']:
                 view.settings().erase(s)
+            view.settings().set('wrap_width',
+                                view.settings().get('wrap_width'))
 
     def run_once(self, view):
         if self.enabled(view):
