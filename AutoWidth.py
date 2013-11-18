@@ -30,6 +30,7 @@ class AutoWidth(object):
     def update_view(self, view):
         threshold = 4
         adjustment = 2
+        view.settings().erase('wrap_width')
         layout_chars = self.get_layout_chars(view)
         viewport_chars = self.get_viewport_chars(view)
         if layout_chars > viewport_chars:
@@ -44,13 +45,11 @@ class AutoWidth(object):
                 viewport_chars = self.get_viewport_chars(view)
             linenumbers_chars = self.get_linenumbers_chars(view)
             view.settings().set('wrap_width',
-                                viewport_chars - linenumbers_chars
-                                - adjustment)
+                                int(viewport_chars - linenumbers_chars
+                                    - adjustment))
         elif layout_chars < viewport_chars - threshold - adjustment:
             for s in ['wrap_width', 'font_size', 'font_size_override']:
                 view.settings().erase(s)
-            view.settings().set('wrap_width',
-                                view.settings().get('wrap_width'))
 
     def run_once(self, view):
         if self.enabled(view):
